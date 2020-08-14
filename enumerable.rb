@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Enumerable module
 module Enumerable
   def my_each
