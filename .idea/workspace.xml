@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ad463f1-f137-47a0-a106-557f6e4d21f4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/enumerables.rb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +121,7 @@
       <updated>1597416671643</updated>
       <workItem from="1597416673182" duration="232000" />
       <workItem from="1597416977114" duration="14083000" />
-      <workItem from="1597439160602" duration="24000" />
+      <workItem from="1597439160602" duration="332000" />
     </task>
     <servers />
   </component>
@@ -166,10 +165,10 @@
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state width="1802" height="266" key="GridCell.Tab.0.right/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1597434030448" />
-    <state x="2077" y="174" width="560" height="765" key="RollbackChangesDialog" timestamp="1597419684285">
+    <state x="2077" y="174" width="560" height="765" key="RollbackChangesDialog" timestamp="1597439450061">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
-    <state x="2077" y="174" width="560" height="765" key="RollbackChangesDialog/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1597419684285" />
+    <state x="2077" y="174" width="560" height="765" key="RollbackChangesDialog/1366.0.1920.1080/0.27.1366.741@1366.0.1920.1080" timestamp="1597439450061" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/enumerables@enumerables.rcov" NAME="enumerables Coverage Results" MODIFIED="1597426843861" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="enumerables" />
