@@ -33,9 +33,9 @@ module Enumerable
     end
 
     result
-  end 
+  end
 
-  def my_any? 
+  def my_any?
     result = false
     if self.is_a?(Array)
       self.my_each do |item| result = true if yield(item) end
@@ -44,5 +44,24 @@ module Enumerable
     end
 
     result
+  end
+  def my_none?
+    if yield(i)
+      return true
+    else
+      self.my_each do |i|
+        return false
+      end
+    end
+  end
+  def my_count
+    count = 0
+    if yield(i)
+      return count
+    else
+      self.my_each do |i|
+        return count += 1
+      end
+    end
   end
 end

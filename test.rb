@@ -19,3 +19,24 @@ def my_any?
 
   result
 end
+
+def my_none?
+  if yield(i)
+    return true
+  else
+    self.my_each do |i|
+      return false
+    end
+  end
+end
+
+def my_count
+  count = 0
+  if yield(i)
+    return count
+  else
+    self.my_each do |i|
+      return count += 1
+    end
+  end
+end
