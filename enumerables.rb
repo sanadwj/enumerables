@@ -23,4 +23,26 @@ module Enumerable
       end
     end
   end
+
+  def my_all?
+    result = true
+    if self.is_a?(Array)
+      self.my_each do |item| result = false unless yield(item) end
+    elsif self.is_a(Hash)
+      self.my_each do |k, v| result = false unless yield(k, v) end
+    end
+
+    result
+  end 
+
+  def my_any? 
+    result = false
+    if self.is_a?(Array)
+      self.my_each do |item| result = true if yield(item) end
+    elsif self.is_a?(Hash)
+      self.my_each do |k, v| result = true if yield(k, v) end
+    end
+
+    result
+  end
 end
