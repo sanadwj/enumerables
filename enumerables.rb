@@ -67,12 +67,16 @@ module Enumerable
     end
   end
 
-  def my_map
+  def my_map(&block)
     result = []
     if is_a?(Array)
-      my_each { |item| result << yield(item) }
+      my_each do |i|
+        result << (block.nil? ? yield(i) : block.call(i))
+      end
     elsif is_a?(Hash)
-      my_each { |_item| result << yield(k, v) }
+      my_each do |k, v|
+        result << (block.nil? ? yield(k, v) : block.call(k, v))
+      end
     end
     result
   end
@@ -82,5 +86,11 @@ module Enumerable
     result = initial_value
     my_each { |item| result = yield(result, item) }
     result
+  end
+
+  def multibly_els(num)
+    num.my_inject(1) do |t, i|
+      return t * i
+    end
   end
 end

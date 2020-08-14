@@ -55,3 +55,22 @@ def my_inject(initial_value = nil)
   my_each { |item| result = yield(result, item) }
   result
 end
+
+def multibly_els(num)
+  num.my_inject(1) do |t, i|
+    return t * i
+  end
+end
+
+def my_map(&block)
+  result = []
+    if self.is_a?(Array)
+      self.my_each do |i|
+        block.nil? ? result << yield(i) : result << block.call(i) end
+    elsif self.is_a?(Hash)
+      self.my_each do |k, v|
+        block.nil? ? result << yield(k, v) : result << block.call(k, v) end
+    end
+  end
+  result
+end
