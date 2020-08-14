@@ -17,10 +17,15 @@ module Enumerable
   end
 
   def my_select
-    select = []
-    select.my_each do |i|
-      select.push(i + 1) if yield(i)
+    if is_a?(Array)
+      results = []
+      length.times { |i| results << self[i] if yield(self[i]) }
+    elsif is_a?(Hash)
+      results = {}
+      my_each { |k, v| results[k] = v if yield(k, v) }
     end
+
+    results
   end
 
   def my_all?
@@ -46,24 +51,19 @@ module Enumerable
   end
 
   def my_none?
-    if yield(i)
-      true
-    else
-      my_each do |_i|
-        return false
-      end
+    if is_a?(Array)
+      result = !my_any? { |item| yield(item) }
+    elsif is_a?(Hash)
+      result = !my_any? { |k, v| yield(k, v) }
     end
+
+    result
   end
 
-  def my_count
-    count = 0
-    if yield(i)
-      count
-    else
-      my_each do |_i|
-        return count += 1
-      end
-    end
+  def my_count(obj = nil)
+    result = 0
+    my_each { |item| result += 1 if item == obj || obj.nil? }
+    result
   end
 
   def my_map(&block)
@@ -83,16 +83,40 @@ module Enumerable
     result
   end
 
-  def multibly_els(num)
-    num.my_inject(1) do |t, i|
-      t * i
-    end
+  def multiply_els(num)
+    num.my_inject(1) { |t, i| t * i }
   end
 end
 
-list = [5, 4, 3, 2, 1]
-
-list.each { |l| puts "#{l}"}
-list.my_each { |l| puts "#{l}"}
-list.my_each_with_index { |l| puts "#{l}"}
-
+# list = [5, 4, 3, 2, 1]
+#
+# list.each { |l| puts "#{l}"}
+# puts
+#
+# list.my_each { |l| puts "#{l}"}
+# puts
+#
+# list.my_each_with_index { |l| puts "#{l}"}
+# puts
+#
+# list.my_select { |l| puts "#{l.even?}"}
+# puts
+#
+# list.my_all? { |l| puts "#{l > 3}" }
+# puts
+#
+# list.my_any? { |l| puts "#{l > 3}" }
+# puts
+#
+# list.my_none? { |l| puts "#{l > 3}" }
+# puts
+#
+# list.my_count { |l| puts "#{l}" }
+# puts
+#
+# list.my_map { |l| puts "#{l*l}" }
+# puts
+#
+# list.my_inject { |l| puts "#{l}" }
+# puts
+#
