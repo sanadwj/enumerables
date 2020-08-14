@@ -19,7 +19,7 @@ module Enumerable
   def my_select
     select = []
     select.my_each do |i|
-      select.push(i) if yield(i)
+      select.push(i + 1) if yield(i)
     end
   end
 
@@ -89,3 +89,10 @@ module Enumerable
     end
   end
 end
+
+list = [5, 4, 3, 2, 1]
+
+list.each { |l| puts "#{l}"}
+list.my_each { |l| puts "#{l}"}
+list.my_each_with_index { |l| puts "#{l}"}
+
