@@ -1,4 +1,4 @@
-module Enumerable 
+module Enumerable
   def my_each
     if self.is_a?(Array)
       self.length.times do |i| yield(self[i]) end
@@ -7,5 +7,20 @@ module Enumerable
     end
 
     self
+  end
+
+  def my_each_with_index
+    self.length.times do |i|
+      yield(self[i], i)
+    end
+  end
+
+  def my_select
+    select = []
+    select.my_each do |i|
+      if yield(i)
+        select.push(i)
+      end
+    end
   end
 end
