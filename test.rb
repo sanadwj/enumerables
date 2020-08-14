@@ -3,18 +3,16 @@
 def my_select
   select = []
   select.my_each do |i|
-    if yield(i)
-      select.push(i)
-      end
+    select.push(i) if yield(i)
   end
 end
 
-def my_any? 
+def my_any?
   result = false
-  if self.is_a?(Array)
-    self.my_each do |item| result = true if yield(item) end
-  elsif self.is_a?(Hash)
-    self.my_each do |k, v| result = true if yield(k, v) end
+  if is_a?(Array)
+    my_each { |item| result = true if yield(item) }
+  elsif is_a?(Hash)
+    my_each { |k, v| result = true if yield(k, v) }
   end
 
   result
@@ -22,9 +20,9 @@ end
 
 def my_none?
   if yield(i)
-    return true
+    true
   else
-    self.my_each do |i|
+    my_each do |_i|
       return false
     end
   end
@@ -33,10 +31,27 @@ end
 def my_count
   count = 0
   if yield(i)
-    return count
+    count
   else
-    self.my_each do |i|
+    my_each do |_i|
       return count += 1
     end
   end
+end
+
+def my_map
+  result = []
+  if is_a?(Array)
+    my_each { |item| result << yield(item) }
+  elsif is_a?(Hash)
+    my_each { |_item| result << yield(k, v) }
+  end
+  result
+end
+
+def my_inject(initial_value = nil)
+  initial_value = self[0] if initial_value.nil?
+  result = initial_value
+  my_each { |item| result = yield(result, item) }
+  result
 end
