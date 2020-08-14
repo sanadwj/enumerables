@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Enumerable module
 module Enumerable
   def my_each
     if is_a?(Array)
@@ -7,8 +8,6 @@ module Enumerable
     elsif is_a? Hash
       length.times { |i| yield(keys[i], values[i]) }
     end
-
-    self
   end
 
   def my_each_with_index
@@ -70,13 +69,9 @@ module Enumerable
   def my_map(&block)
     result = []
     if is_a?(Array)
-      my_each do |i|
-        result << (block.nil? ? yield(i) : block.call(i))
-      end
+      my_each { |item| result << (block.nil? ? yield(item) : block.call(item)) }
     elsif is_a?(Hash)
-      my_each do |k, v|
-        result << (block.nil? ? yield(k, v) : block.call(k, v))
-      end
+      my_each { |k, v| result << (block.nil? ? yield(k, v) : block.call(k, v)) }
     end
     result
   end
@@ -90,7 +85,7 @@ module Enumerable
 
   def multibly_els(num)
     num.my_inject(1) do |t, i|
-      return t * i
+      t * i
     end
   end
 end
