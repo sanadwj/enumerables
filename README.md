@@ -1,7 +1,7 @@
 
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# enumerable
+# Enumerable
 
 > This is a script file to house our enumerable methods using the Ruby programming language.
 
@@ -13,7 +13,11 @@
 
 ## Getting Started
 
-To get a local copy up and running follow these steps.
+To get a local copy up and running follow these simple example steps.
+
+- Go to the main page of te repo.
+- Press the "Code" button and get the repo link.
+- Clone it using git.
 
 ### Prerequisites
 
