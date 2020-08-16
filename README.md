@@ -25,9 +25,15 @@ To get a local copy up and running follow these simple example steps.
 
 
 ### Setup
-
-`https://github.com/sanadwj/enumerables.git`
-
+ - Open a terminal
+ - Copy this code : 
+        ```
+        git clone https://github.com/sanadwj/enumerables.git
+        ```
+- Run the program with this code :
+        ```
+        ruby enumerable.rb
+        ```
 
 ### Usage
 
