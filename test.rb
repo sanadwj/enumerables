@@ -15,10 +15,14 @@ puts
 # => [2, 4]
 
 # my_all? method test
-# [2, 4].my_all?(&:even?)
-# => true
-# [1, 2, 4].my_all?(&:even?)
+p ["ant", "bear", "cat"].all? { |word| word.length >= 3 }
+# => true 
+p ["ant", "bear", "cat"].all? { |word| word.length >= 4 }
 # => false
+p [nil, true, 99].my_all?
+# => false
+p [].my_all? 
+# => true
 
 # my_any? method test
 # [1, 2, 3].my_any?(&:even?)
@@ -56,3 +60,8 @@ puts
 # [2,4,5].multiply_els
 # => 40
 =end
+
+
+
+
+

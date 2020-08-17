@@ -31,11 +31,16 @@ module Enumerable
     array
   end
 
-  def my_all?
-    return unless block_given?
-
-    result = my_select { |x| yield x }
-    length == result.length
+  def my_all?(arg = nil)
+    if block_given?
+      my_each { |x| return false if yield(x) == false }
+      return true
+    elsif arg.nil?
+      my_each { |i| return false if i.nil? || i == false }
+    else
+      my_each { |i| return false if i != arg }
+    end
+    true
   end
 
   def my_any?
