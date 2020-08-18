@@ -4,6 +4,10 @@
 
 # rubocop:disable Metrics/PerceivedComplexity
 
+# rubocop: disable Metrics/AbcSize
+
+# rubocop: disable Metrics/MethodLength
+
 # Enumerable module
 module Enumerable
   def my_each
@@ -100,14 +104,14 @@ module Enumerable
   end
 
   def my_inject(*args)
+    return yield false if args.empty? && !block_given?
+
     case args.length
     when 1 then args.first.is_a?(Symbol) ? sym = args.first : result = args.first
     when 2 then result = args.first
                 sym = args.last
     end
 
-    # a = a || b
-    # a ||= b
     result ||= 0
     my_each { |x| result = block_given? ? yield(result, x) : result.send(sym, x) }
 
@@ -124,3 +128,7 @@ end
 # rubocop: enable Metrics/CyclomaticComplexity
 
 # rubocop:enable Metrics/PerceivedComplexity
+
+# rubocop: enable Metrics/AbcSize
+
+# rubocop: enable Metrics/MethodLength
