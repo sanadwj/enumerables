@@ -1,5 +1,9 @@
 # rubocop:disable Style/For
 
+# rubocop: disable Metrics/CyclomaticComplexity
+
+# rubocop:disable Metrics/PerceivedComplexity
+
 # Enumerable module
 module Enumerable
   def my_each
@@ -103,3 +107,7 @@ module Enumerable
 end
 
 # rubocop:enable Style/For
+
+# rubocop: enable Metrics/CyclomaticComplexity
+
+# rubocop:enable Metrics/PerceivedComplexity
