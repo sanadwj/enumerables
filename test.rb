@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # rubocop:disable Style/BlockComments
 =begin
 # go to enumerable.rb file
@@ -80,5 +81,3 @@ p [].my_all?
 =end
 
 # rubocop:enable Style/BlockComments
-
-
