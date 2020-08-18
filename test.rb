@@ -1,3 +1,4 @@
+# rubocop:disable Style/BlockComments
 =begin
 # go to enumerable.rb file
 # to log this tests on the console use puts or p
@@ -16,24 +17,32 @@ puts
 
 # my_all? method test
 p ["ant", "bear", "cat"].all? { |word| word.length >= 3 }
-# => true 
+# => true
 p ["ant", "bear", "cat"].all? { |word| word.length >= 4 }
 # => false
 p [nil, true, 99].my_all?
 # => false
-p [].my_all? 
+p [].my_all?
 # => true
 
-# my_any? method test
-# [1, 2, 3].my_any?(&:even?)
+# my_any?? method test
+# ["ant", "bear", "cat"].my_any? { |word| word.length >= 3 }
 # => true
-# [1, 3, 5].my_any?(&:even?)
+# ["ant", "bear", "cat"].my_any? { |word| word.length >= 2 }
+# => true
+# [nil, false,false ].my_any?
+# => false
+# [].my_any?
 # => false
 
 # my_none? method test
-# [1, 2, 3].my_none?(&:even?)
+# ["ant", "bear", "cat"].my_none? { |word| word.length >= 3 }
 # => false
-# [1, 3, 5].my_none?(&:even?)
+# ["ant", "bear", "cat"].my_none? { |word| word.length >= 4 }
+# => false
+# [nil, false,true ].my_none?
+# => false
+# [].my_none?
 # => true
 
 # my_count method test
@@ -46,6 +55,13 @@ p [].my_all?
 
 # my_map method test
 # [1, 2, 3, 4, 5].my_map { |x| x * 2 }
+# => [2, 4, 6, 8, 10]
+# multiples_of_3 = Proc.new do |n|
+#   if n % 3 == 0
+#     n * 3
+#   end
+# end
+#p [1, 2, 3, 4, 5].my_map(&multiples_of_3)
 # => [2, 4, 6, 8, 10]
 
 # my_inject method test
@@ -61,7 +77,4 @@ p [].my_all?
 # => 40
 =end
 
-
-
-
-
+# rubocop:enable Style/BlockComments
