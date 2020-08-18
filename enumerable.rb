@@ -37,8 +37,12 @@ module Enumerable
     if block_given?
       my_each { |x| return false if yield(x) == false }
       return true
+    elsif arg.is_a?(Class)
+      my_each { |x| return false unless x.is_a?(arg) }
     elsif arg.nil?
       my_each { |i| return false if i.nil? || i == false }
+    elsif arg.is_a?(Regexp)
+      my_each { |x| return false unless x.match(arg) }
     else
       my_each { |i| return false if i != arg }
     end
@@ -47,10 +51,14 @@ module Enumerable
 
   def my_any?(arg = true)
     if block_given?
-      my_each { |x| return false if yield(x) == false }
+      my_each { |x| return true if yield(x) == true }
       return true
+    elsif arg.is_a?(Class)
+      my_each { |x| return true if x.is_a?(arg) }
     elsif arg.nil?
       my_each { |i| return true if i.nil? || i == false }
+    elsif arg.is_a?(Regexp)
+      my_each { |x| return true if x.match(arg) }
     else
       my_each { |i| return true if i == true }
     end
@@ -63,6 +71,8 @@ module Enumerable
       return true
     elsif arg.nil?
       my_each { |i| return true if i.nil? || i == false }
+    elsif arg.is_a?(Regexp)
+      my_each { |x| return false unless x.match(arg) }
     else
       my_each { |i| return false if i == true }
     end
@@ -71,17 +81,20 @@ module Enumerable
 
   def my_count(count = nil)
     return count if count
-    return length unless block_given?
+    return size unless block_given?
 
-    my_select { |x| yield x }.length
+    my_select { |x| yield x }.size
   end
 
   def my_map(my_proc = nil)
     return to_enum unless block_given?
 
     array = []
-    my_each { |x| array << my_proc.call(x) } if my_proc
-    my_each { |x| array << yield(x) } if block_given?
+    if my_proc
+      my_each { |x| array << my_proc.call(x) }
+    elsif block_given?
+      my_each { |x| array << yield(x) }
+    end
 
     array
   end
@@ -101,8 +114,8 @@ module Enumerable
     result
   end
 
-  def multiply_els(list)
-    list.my_inject(1, :*)
+  def multiply_els(array)
+    array.my_inject(1, :*)
   end
 end
 
