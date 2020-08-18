@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 # rubocop:disable Style/BlockComments
 =begin
 # go to enumerable.rb file
