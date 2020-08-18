@@ -66,9 +66,11 @@ p [].my_all?
 
 # my_inject method test
 # (5..10).my_inject(:+)
+# => 45
 # (5..10).my_inject { |sum, n| sum + n }
 # => 45
 # (5..10).my_inject(1, :*)
+# => 151200
 # (5..10).my_inject(1) { |product, n| product * n }
 # => 151200
 
@@ -78,3 +80,5 @@ p [].my_all?
 =end
 
 # rubocop:enable Style/BlockComments
+
+

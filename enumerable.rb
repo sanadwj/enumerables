@@ -84,11 +84,12 @@ module Enumerable
 
   def my_inject(*args)
     case args.length
-    when 1 then args.first.is_a?(Symbol) ? sym = args.first : result = args.first
-    when 2 then result = args.first
-                sym = args.last
+      when 1 then args.first.is_a?(Symbol) ? sym = args.first : result = args.first
+      when 2 then result, sym = args.first, args.last
     end
 
+    # a = a || b
+    # a ||= b
     result ||= 0
     my_each { |x| result = block_given? ? yield(result, x) : result.send(sym, x) }
 
