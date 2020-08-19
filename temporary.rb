@@ -58,7 +58,7 @@ module Enumerable
     elsif arg.nil?
       my_each { |i| return true if i.nil? || i == false }
     elsif arg.is_a?(Regexp)
-      my_each { |x| return true if x.match(arg) }
+      my_each { |x| return true if x.match(x) }
     else
       my_each { |i| return true if i == true }
     end
@@ -125,3 +125,4 @@ end
 # rubocop: enable Metrics/CyclomaticComplexity
 
 # rubocop:enable Metrics/PerceivedComplexity
+
