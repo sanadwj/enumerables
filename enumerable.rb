@@ -60,11 +60,13 @@ module Enumerable
     elsif arg.is_a?(Class)
       my_each { |x| return true if x.is_a?(arg) }
     elsif arg.nil?
-      my_each { |i| return true if i.nil? || i == false }
+      my_each { |x| return true if x.nil? || x == false }
     elsif arg.is_a?(Regexp)
       my_each { |x| return true if x.match(arg) }
+    elsif arg.is_a?(String)
+      my_each { |x| return true if x == arg }
     else
-      my_each { |i| return true if i == true }
+      my_each { |x| return true if x == true }
     end
     false
   end
@@ -78,6 +80,8 @@ module Enumerable
     elsif arg.is_a?(Regexp)
       my_each { |x| return false if x.match(arg) }
       return true
+    elsif arg.is_a?(String)
+      my_each { |x| return false if x == arg }
     else
       my_each { |i| return false if i == true }
     end
@@ -117,7 +121,7 @@ module Enumerable
     end
 
     array = is_a?(Range) ? to_a : self
-    result ||= array.shift
+    result ||= array[0] - array[array.length - 1]
 
     array.my_each do |x|
       if block_given?
