@@ -3,8 +3,12 @@
 
 # Enumerable
 
+![screenshot](./Screenshot.png)
+
 > This is a script file to house our enumerable methods using the Ruby programming language.
 
+## Live Demo
+[Live Demo Link](https://repl.it/@Sanadwj/FumblingSizzlingParameter#main.rb)
 
 ## Built With
 

@@ -54,7 +54,7 @@ module Enumerable
       my_each { |x| return true if yield(x) == true }
       return false
     elsif arg.is_a?(Class)
-      my_each { |x| return false if x.is_a?(arg) }
+      my_each { |x| return true if x.is_a?(arg) }
     elsif arg.nil?
       my_each { |i| return true if i.nil? || i == false }
     elsif arg.is_a?(Regexp)
@@ -81,10 +81,12 @@ module Enumerable
   end
 
   def my_count(count = nil)
-    return count if count
-    return size unless block_given?
+    return size if !block_given? && count.nil?
 
-    my_each { |x| yield x }.size 
+    counter = 0
+    my_each { |i| counter += 1 if (block_given? && yield(i)) || (i == count) }
+
+    counter
   end
 
   def my_map(my_proc = nil)
@@ -103,20 +105,29 @@ module Enumerable
   def my_inject(*args)
     return yield false if args.empty? && !block_given?
 
-    case args.length
-    when 1 then args.first.is_a?(Symbol) ? sym = args.first : result = args.first
-    when 2 then result = args.first
-                sym = args.last
+    if args.length == 1
+      args.first.is_a?(Symbol) ? sym = args.first : result = args.first
+    elsif args.length == 2
+      result = args.first
+      sym = args.last
     end
 
-    result ||= 0
-    my_each { |x| result = block_given? ? yield(result, x) : result.send(sym, x) }
+    array = is_a?(Range) ? to_a : self
+    result ||= array.shift
+
+    array.my_each do |x|
+      if block_given?
+        result = yield(result, x)
+      else
+        result = result.send(sym, x)
+      end
+    end
 
     result
   end
 
-  def multiply_els(array)
-    array.my_inject(1, :*)
+  def multiply_els
+    my_inject(1, :*)
   end
 end
 
@@ -125,3 +136,5 @@ end
 # rubocop: enable Metrics/CyclomaticComplexity
 
 # rubocop:enable Metrics/PerceivedComplexity
+
+# my_inject method test
