@@ -4,6 +4,10 @@
 
 # rubocop:disable Metrics/PerceivedComplexity
 
+# rubocop: disable Metrics/ModuleLength
+
+# rubocop: disable Style/ConditionalAssignment
+
 # Enumerable module
 module Enumerable
   def my_each
@@ -137,4 +141,6 @@ end
 
 # rubocop:enable Metrics/PerceivedComplexity
 
-# my_inject method test
+# rubocop: enable Metrics/ModuleLength
+
+# rubocop: enable Style/ConditionalAssignment
