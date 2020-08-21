@@ -135,10 +135,10 @@ module Enumerable
 
     result
   end
+end
 
-  def multiply_els(array)
-    array.my_inject(1, :*)
-  end
+def multiply_els(array)
+  array.my_inject(:*)
 end
 
 # rubocop:enable Style/For
