@@ -6,8 +6,6 @@
 
 # rubocop: disable Metrics/ModuleLength
 
-# rubocop: disable Style/ConditionalAssignment
-
 # Enumerable module
 module Enumerable
   def my_each
@@ -150,5 +148,3 @@ end
 # rubocop:enable Metrics/PerceivedComplexity
 
 # rubocop: enable Metrics/ModuleLength
-
-# rubocop: enable Style/ConditionalAssignment
