@@ -123,7 +123,7 @@ module Enumerable
     end
 
     array = is_a?(Range) ? to_a : self
-    result ||= array[0] - array[array.length - 1]
+    result ||= array.shift
 
     array.my_each do |x|
       if block_given?
@@ -136,8 +136,8 @@ module Enumerable
     result
   end
 
-  def multiply_els
-    my_inject(1, :*)
+  def multiply_els(array)
+    array.my_inject(1, :*)
   end
 end
 
