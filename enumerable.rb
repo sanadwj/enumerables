@@ -84,6 +84,8 @@ module Enumerable
       return true
     elsif arg.is_a?(String)
       my_each { |x| return false if x == arg }
+    elsif arg.is_a?(Integer)
+      my_each { |x| return false if x == arg }
     else
       my_each { |i| return false if i == true }
     end
@@ -115,25 +117,25 @@ module Enumerable
   def my_inject(*args)
     return yield false if args.empty? && !block_given?
 
-    if args.length == 1
-      args.first.is_a?(Symbol) ? sym = args.first : result = args.first
-    elsif args.length == 2
-      result = args.first
-      sym = args.last
+    next_one = false
+    acum = Array(self)[0]
+    if (args[0].class == Symbol) || args[0].nil?
+      next_one = true
+    elsif args[0].is_a? Numeric
+      acum = args[0]
     end
+    Array(self).my_each_with_index do |x, i|
+      next if next_one && i.zero?
 
-    array = is_a?(Range) ? to_a : self
-    result ||= array.shift
-
-    array.my_each do |x|
       if block_given?
-        result = yield(result, x)
-      else
-        result = result.send(sym, x)
+        acum = yield(acum, x)
+      elsif args[0].class == Symbol
+        acum = acum.send(args[0], x)
+      elsif args[0].is_a? Numeric
+        acum = acum.send(args[1], x)
       end
     end
-
-    result
+    acum
   end
 end
 
