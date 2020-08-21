@@ -61,7 +61,7 @@ To get a local copy up and running follow these simple example steps.
 Contributions, issues and feature requests are welcome!
 
 
-## Show your support
+## Show your support .
 
 Give a ⭐️ if you like this project!
 
