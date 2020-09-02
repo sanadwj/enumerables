@@ -7,7 +7,7 @@ describe Enumerable do
   let (:ans) { [] }
   let (:bool) { [true, false, nil] }
   let (:str) { %w[book pen table] }
-  let (:str1) { %w[one two four]}
+  let (:str1) { %w[one two four] }
 
   context 'my_each' do
     it 'Should check through array and block' do
@@ -43,7 +43,13 @@ describe Enumerable do
       expect(bool.my_all?).to eq(false)
     end
     it 'Check if a block is given' do
-      expect(arr.my_all? { |x| x.is_a?(Integer) }).to be true
+      expect(arr.my_all? { |x| x >= 1 }).to be true
+    end
+    it 'Check if a block is given' do
+      expect(arr.my_all?(Integer)).to be true
+    end
+    it 'Check if a block is given' do
+      expect(arr.my_all?(String)).to be false
     end
     it 'Check if the regex match' do
       expect(str.my_all?(/oo/)).to eq(false)
@@ -57,9 +63,14 @@ describe Enumerable do
     it 'Check if a block or the argument are not given and if there is a false or nil' do
       expect(bool.my_any?).to eq(true)
     end
-    
     it 'Check if a block is given' do
       expect(arr.my_any? { |x| x.is_a?(Integer) }).to be true
+    end
+    it 'Check if a block is given' do
+      expect(arr.my_any?(Integer)).to be true
+    end
+    it 'Check if a block is given' do
+      expect(arr.my_any?(String)).to be false
     end
     it 'Check if the regex match' do
       expect(str.my_any?(/oo/)).to eq(true)
@@ -76,6 +87,12 @@ describe Enumerable do
     it 'Check if a block is given' do
       expect(arr.my_none? { |x| x.is_a?(Integer) }).to be false
     end
+    it 'Check if a block is given' do
+      expect(str.my_none?(Integer)).to be true
+    end
+    it 'Check if a block is given' do
+      expect(str.my_none?(String)).to be false
+    end
     it 'Check if the regex match' do
       expect(str.my_none?(/z/)).to eq(true)
     end
@@ -85,7 +102,7 @@ describe Enumerable do
   end
 
   context 'my_count' do
-    it 'return the number of the items in the array equal to argument' do
+    it 'return the number of the items in the array equal to block' do
       expect(arr.my_count { |x| x < 3 }).to eq(2)
     end
     it 'return the number of the items in the array if there is no argument' do
@@ -101,7 +118,7 @@ describe Enumerable do
       expect(arr.my_map { |x| x * 3 }).to eq([3, 6, 9, 12])
     end
     it 'if no block given returns enum' do
-      expect(arr.my_map { 'hi' }).to eq(%w[hi hi hi hi])
+      expect(arr.my_map).to be_an Enumerator
     end
   end
 
@@ -109,10 +126,10 @@ describe Enumerable do
     it 'if block given returns acum' do
       expect(arr.my_inject { |acum, x| acum + x }).to eq(10)
     end
-    it 'return the multiplies of the array' do
+    it 'return the multiplies of the array and give it initial value' do
       expect(arr.my_inject(1) { |acum, x| acum * x }).to eq(24)
     end
-    it 'if the arument is a sympol returns acum' do
+    it 'if the argument is a sympol returns acum' do
       expect(arr.my_inject(:*)).to eq(24)
     end
   end
