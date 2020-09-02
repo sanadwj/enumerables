@@ -42,6 +42,29 @@ To get a local copy up and running follow these simple example steps.
 ### Usage
 
 - Personal Project - Create a script file to house our methods using Ruby in the best approach in our opinion . 
+### Automated Tests
+
+- In root directory copy this:
+            ```
+            cd spec
+            ```
+- In your terminal copy this code to test the methods:
+            ```
+            rspec enumerable_spec.rb
+            ```
+- If one of the method is not working it will show you this error example:
+
+            ```
+            Enumerable my_inject if the argument is a sympol returns acum
+                 Failure/Error: expect(arr.my_inject(:*)).to eq(2)
+                 
+                   expected: 2
+                        got: 24
+                 
+                   (compared using ==)
+                 # ./enumerable_spec.rb:133:in `block (3 levels) in <top (required)>'
+            ```
+                        
 
 ## Authors
 
