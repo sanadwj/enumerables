@@ -52,7 +52,7 @@ To get a local copy up and running follow these simple example steps.
             ```
             rspec enumerable_spec.rb
             ```
-- If one of the method is not working it will show you this error example:
+- If one of the methods is not working it will show you this error example:
 
             ```
             Enumerable my_inject if the argument is a sympol returns acum
